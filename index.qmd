@@ -1,0 +1,38 @@
+---
+title: "Interactive R, Python, and Shiny in the Browser"
+format:
+  revealjs: 
+    theme: [default, custom.scss]
+    filters:
+      - fontawesome
+      - reveal-auto-agenda
+    auto-agenda:
+      bullets: numbered
+    transition: fade
+    background-transition: fade
+    highlight-style: nord
+    title-slide-attributes: 
+      data-background-image: images/title.png
+      data-background-color: "black"
+    footer: "https://github.com/ivelasq/getting-started-with-report-writing-using-quarto"
+knitr: 
+  opts_chunk: 
+    fig.align: center
+---
+
+## Introduction
+
+<center>
+
+<img src="images/profile.jpg" style="border-radius: 50%;" width="250px"/>
+
+[{{< fa brands github >}} ivelasq](https://github.com/ivelasq)
+
+[{{< fa brands bluesky >}} ivelasq3](https://twitter.com/ivelasq3)
+
+[{{< fa brands mastodon >}} ivelasq3](https://fosstodon.org/@ivelasq3)
+
+[{{< fa link >}} ivelasq.rbind.io](https://ivelasq.rbind.io)
+
+</center>
+
