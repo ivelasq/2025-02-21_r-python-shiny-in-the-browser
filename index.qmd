@@ -203,6 +203,8 @@ What if you don't know JavaScript? 😅
 WebR aims to be as quick and easy to use as possible for those familiar with JavaScript web development, which raises the question... what if you don't know Javascript?
 :::
 
+## {background-image="images/quarto.png"}
+
 ## Introduction to Quarto
 
 ::: incremental
@@ -218,14 +220,14 @@ quarto.org/
 :::
 
 ::: notes
-Quarto is a next-generation, open-source publishing system. It has expanded upon R Markdown to add new languages and can add more in the future. R Markdown has a lot of packages doing lots of different things, but Quarto has a shared expression for core features. Create dynamic content with Python, R, Julia, and Observable. Enable “single-source publishing” — create Word, PDFs, HTML, etc. from one source, you can make books, websites, presentations. 
+Quarto is a next-generation, open-source publishing system. It has expanded upon R Markdown to add new languages and can add more in the future. R Markdown has a lot of packages doing lots of different things, but Quarto has a shared expression for core features. Create dynamic content with Python, R, Julia, and Observable. Enable “single-source publishing” — create Word, PDFs, HTML, etc. from one source, you can make books, websites, presentations. There are many resources about Quarto, I gave a talk at R-Ladies St. Louis, and happy to link, but will only be sharing most critical aspects.
 :::
 
 ## Anatomy of a Quarto document
 
 ::: {.r-stack}
 
-````{.yaml filename="example.qmd" code-line-numbers=|1-6|8,10|12|13-16|18-31}
+````{.qmd  code-line-numbers=|1-6|8,10|12|13-16|18-31}
 ---
 title: "ggplot2 demo"
 format: 
@@ -266,30 +268,30 @@ ggplot(penguins,
 
 ## Quarto extensions
 
-Extensions are a powerful way to modify and extend the behavior of Quarto.
+::: {.panel-tabset}
 
-:::: {.columns}
+## Formats
 
-::: {.column width="28%"}
+![](images/extension1.gif){width=40% fig-align="center"}
 
-:::
+Scrollytelling extension
 
-::: {.column width="28%"}
-![](images/extension2.png)
+## Journal articles
+
+![](images/extension2.png){width=40% fig-align="center"}
 
 Journal of Statistical Software (JSS)
-:::
 
-::: {.column width="28%"}
-![](images/extension3.gif)
+## RevealJS themes
+
+![](images/extension3.gif){width=40% fig-align="center"}
 
 nes-revealjs format by EmilHvitfeldt
-:::
 
-::::
+::: 
 
 ::: notes
-Quarto extensions let you customize and extend Quarto’s functionality beyond its built-in features. They enable: New Output Formats – Create custom templates for reports, presentations, or interactive documents, Custom Shortcodes & Filters – Modify how Quarto processes content, such as adding new syntax or automating formatting, and Custom Layouts & Themes – Design unique styling and layouts for HTML, PDF, or Word outputs. Quarto has a Lua-based extension system, and you can make your own, too.
+Quarto extensions let you customize and extend Quarto’s functionality beyond its built-in features. They enable: New Output Formats – Create custom templates for reports, presentations, or interactive documents,  Custom Layouts & Themes – Design unique styling and layouts for HTML, PDF, or Word outputs. Custom Shortcodes & Filters – Modify how Quarto processes content, such as adding new syntax or automating formatting, which I will show in next page. Quarto has a Lua-based extension system, and you can make your own, too.
 :::
 
 ## Quarto extensions
@@ -479,7 +481,7 @@ Designating a `webr` chunk as an exercise (with optional setup code, hints, solu
 
 ```{webr}
 #| exercise: ex_1
-Fill in the blank so that the result of the sum is 10.
+# Fill in the blank so that the result of the sum is 10.
 
 1 + 2 + 3 + ______
 ```
@@ -487,7 +489,7 @@ Fill in the blank so that the result of the sum is 10.
 ```{webr}
 #| exercise: ex_1
 #| check: true
-if (identical(.result, 4 {
+if (identical(.result, 10)) {
   list(correct = TRUE, message = "Nice work!")
 } else {
   list(correct = FALSE, message = "That's incorrect, sorry.")
@@ -527,7 +529,7 @@ https://wilkelab.org/SDS366/worksheets/intro-to-R.html
 https://ivelasq.rbind.io/blog/not-so-basic-base-r-functions/
 :::
 
-## webR love
+## webR love 💜
 
 ![](images/webr-love.png){fig-align="center"}
 
@@ -608,7 +610,7 @@ With Shinylive, anybody can create their own serverless Shiny apps to run in the
 
 ```{shinylive-r}
 #| standalone: true
-#| viewerHeight: 420
+#| viewerHeight: 500
 
 library(shiny)
 library(bslib)
@@ -650,9 +652,13 @@ shinyApp(ui, server)
 Announced in July 2022 for Python and September 2023 for R, Shinylive uses Pyodide and webR to enable fully in-browser Shiny apps without a backend. It offers an online editor, conversion of existing Shiny apps, and embedding Shiny apps in Quarto documents.
 :::
 
-## Hosting Shinylive apps
+## Shinylive architecture
 
-![](images/shinylive-arch.png){fig-align="center"}
+![](images/shinylive-arch.png){width=60% fig-align="center"}
+
+::: aside
+[Source](https://georgestagg.github.io/shiny-without-a-server-2023/#/traditional-shiny-architecture)
+:::
 
 ::: notes
 All you need to run Shinylive is one of these static web servers. When an application is deployed with Shinylive, Python and Shiny run in the web browser: the browser is effectively both the client and server for the application. There is a web server that serves files, but it does not run Python or Shiny—it can be a “dumb” static web server.
@@ -675,7 +681,7 @@ All you need to run Shinylive is one of these static web servers. When an applic
 :::
 
 ::: notes
-There's an online Shinylive editor for R and Python. The editor is on the left, so you can change the app in real time. Build it live! You can share apps via the share button, with a URL that you can sent to someone else.
+There's an online Shinylive editor for R and Python. The editor is on the left, so you can change the app in real time. Build it live! It uses bslib which is next-generation Shiny creation and styling. It aims to look beautiful right out of the box. You can share apps via the share button, with a URL that you can sent to someone else.
 :::
 
 ## How to use Shinylive
@@ -693,6 +699,12 @@ install.packages("shinylive")
 pip install shinylive
 ```
 
+::: aside
+[R docs](https://posit-dev.github.io/r-shinylive/)
+
+[Python docs](https://shiny.posit.co/py/docs/shinylive.html)
+:::
+
 ## How to use Shinylive
 
 ### Convert a Shiny app
@@ -709,8 +721,9 @@ shinylive export myapp site
 ```
 
 ::: aside
-https://posit-dev.github.io/r-shinylive/
-https://shiny.posit.co/py/docs/shinylive.html
+[R docs](https://posit-dev.github.io/r-shinylive/)
+
+[Python docs](https://shiny.posit.co/py/docs/shinylive.html)
 :::
 
 ::: notes
@@ -734,8 +747,9 @@ python -m http.server 8000
 ```
 
 ::: aside
-https://posit-dev.github.io/r-shinylive/
-https://shiny.posit.co/py/docs/shinylive.html
+[R docs](https://posit-dev.github.io/r-shinylive/)
+
+[Python docs](https://shiny.posit.co/py/docs/shinylive.html)
 :::
 
 ::: notes
@@ -782,21 +796,11 @@ Insert a code block with `{shinylive-python}` or `{shinylive-r}`
 
 ## Example: Shiny for Python docs
 
-[![](images/pyshiny.png){width=80% fig-align="center"}](https://shinylive.io/py/examples/){target=_blank}
+[![](images/pyshiny.png){width=80% fig-align="center"}](https://shiny.posit.co/py/docs/overview.html){target=_blank}
 
 ::: aside
-[Link](https://shinylive.io/py/examples/)
+[Link](https://shiny.posit.co/py/docs/overview.html)
 :::
-
-
-## Example: Shiny Assistant
-
-[![](images/shinyassistant.png){width=80% fig-align="center"}](https://gallery.shinyapps.io/assistant/#){target=_blank}
-
-::: aside
-[Link](https://gallery.shinyapps.io/assistant/#)
-:::
-
 
 ## Example: Claus Wilke's Color Picker App
 
@@ -806,34 +810,43 @@ Insert a code block with `{shinylive-python}` or `{shinylive-r}`
 [Link](https://wilkelab.org/SDS366/apps/bin/choose-color/)
 :::
 
+## Example: Shiny Assistant
+
+[![](images/shinyassistant.png){width=80% fig-align="center"}](https://gallery.shinyapps.io/assistant/#){target=_blank}
+
+::: aside
+[Link](https://gallery.shinyapps.io/assistant/#)
+:::
+
 ## Use cases
 
 ::: incremental
 
-* Interactive notebooks and tutorials for teaching
-* Sharing results with executable code
+* Share interactive reports and dashboards with executable code
 * Create and distribute interactive, [reproducible documentation](https://www.nature.com/articles/d41586-024-00725-1)
 * [R-based submissions of clinical trial data to regulatory bodies for review](https://pharmaverse.github.io/blog/posts/2024-02-01_containers_webassembly_submission/containers_and_webassembly_submissions.html)
+* Teaching and learning
 
 :::
 
 ::: notes
-webR can provide a smooth, interactive, immediate introduction to the world of working with data in R. Users who haven't had the chance to use R due to barriers raised by software installation or cloud-based service registration can still be introduced to R thanks to interactive examples powered by webR. The R Consortium Submissions Group champions improved practices of R in clinical trial research, and thanks to Shinylive, they have successfully submitted a pilot R Shiny app featuing Shinylive to the FDA to review.
+webR can provide a smooth, interactive, immediate introduction to the world of working with data in R. Users who haven't had the chance to use R due to barriers raised by software installation or cloud-based service registration can still be introduced to R thanks to interactive examples powered by webR. And in terms of reproducibility, you can have reproducible statistics through containerization and notebook-style literate programming. The R Consortium Submissions Group champions improved practices of R in clinical trial research, and thanks to Shinylive, they have successfully submitted a pilot R Shiny app featuing Shinylive to the FDA to review. In terms of educational benefits, say you're giving an intro to R workshop, you can dive into code without software. You can remix examples on the fly. You can have tactile educational content with interactive experimentation, reduced context switching, no more switching between console and tutorial, making the learning process more streamlined and engaging. This is also helpful for academics who want to service apps to hundreds of people but do not have the computational load available to them. 
 :::
 
 ## Benefits of web-based R and Python
 
 ::: incremental
 
+* Share interactive reports and dashboards easily
 * No installation required for the user
 * Works on any device (tablets, Chromebooks)
   * [thinkR's Rlinguo](https://rtask.thinkr.fr/introducing-rlinguo-a-native-mobile-app-that-runs-r/)
-* Share interactive reports and dashboards easily
+
 
 :::
 
 ::: notes
-webR shines in accessibility. Your content can be hosted on any static web hosting service and you can share with just a URL. Users can run code without installing software. It can be run on tablets or mobile. In terms of ease of deployment, you don't need a supporting computational R server. You can host your code or app on static web hosting services like GitHub Pages. In terms of educational benefits, say you're giving an intro to R workshop, you can dive into code without software. You can remix examples on the fly. You can have tactile educational content with interactive experimentation, reduced context switching, no more switching between console and tutorial, making the learning process more streamlined and engaging. This is also helpful for academics who want to service apps to hundreds of people but do not have the computational load available to them. And in terms of reproducibility, you can have reproducible statistics through containerization and notebook-style literate programming.
+webR shines in accessibility. Your content can be hosted on any static web hosting service and you can share with just a URL. Users can run code without installing software. It can be run on tablets or mobile. In terms of ease of deployment, you don't need a supporting computational R server. You can host your code or app on static web hosting services like GitHub Pages. 
 :::
 
 ## Limitations and considerations
@@ -865,12 +878,6 @@ No secrets with a Shinylive app. ALl the source code goes to client, all the dat
 
 ## {background-image="images/future.png"}
 
-## "Exploring a new frontier"
-
-* Insert interactive examples in your package documentation
-* Add coding exercises in course materials
-* Present interactive walkthroughs in lectures
-* Create materials that work on tablets and mobile devices
-* Write interactive blog posts
+## "Exploring a new frontier"  {background-image="images/frontier.png"}
 
 ## {background-image="images/qa.png"}
