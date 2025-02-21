@@ -378,12 +378,12 @@
 <h2>Example: Interactive R console</h2>
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><a href="https://webr.r-wasm.org/latest/"><img data-src="images/repl.png" class="quarto-figure quarto-figure-center" style="width:80.0%"></a></p>
+<p><a href="https://webr.r-wasm.org/latest/" target="_blank"><img data-src="images/repl.png" class="quarto-figure quarto-figure-center" style="width:80.0%"></a></p>
 </figure>
 </div>
 
 <aside class="notes">
-<p>For example, this is a web-based interactive R console that is included in the webR source repo as a demonstration of integrating webR in a wider web application. It provides a simple R environmetn in your web browser and includes console input/output, code editing, file management, and graphics device output.</p>
+<p>For example, this is a web-based interactive R console that is included in the webR source repo as a demonstration of integrating webR in a wider web application. It provides a simple R environment in your web browser and includes console input/output, code editing, file management, and graphics device output.</p>
 <style type="text/css">
         span.MJX_Assistive_MathML {
           position:absolute!important;
@@ -459,6 +459,9 @@
       }</style></aside>
 </div>
 </section>
+<section id="section-4" class="slide level2" data-background-image="images/quarto.png">
+<h2></h2>
+</section>
 <section id="introduction-to-quarto" class="slide level2">
 <h2>Introduction to Quarto</h2>
 <div>
@@ -470,7 +473,7 @@
 </div>
 
 <aside class="notes">
-<p>Quarto is a next-generation, open-source publishing system. It has expanded upon R Markdown to add new languages and can add more in the future. R Markdown has a lot of packages doing lots of different things, but Quarto has a shared expression for core features. Create dynamic content with Python, R, Julia, and Observable. Enable “single-source publishing” — create Word, PDFs, HTML, etc. from one source, you can make books, websites, presentations.</p>
+<p>Quarto is a next-generation, open-source publishing system. It has expanded upon R Markdown to add new languages and can add more in the future. R Markdown has a lot of packages doing lots of different things, but Quarto has a shared expression for core features. Create dynamic content with Python, R, Julia, and Observable. Enable “single-source publishing” — create Word, PDFs, HTML, etc. from one source, you can make books, websites, presentations. There are many resources about Quarto, I gave a talk at R-Ladies St.&nbsp;Louis, and happy to link, but will only be sharing most critical aspects.</p>
 <style type="text/css">
         span.MJX_Assistive_MathML {
           position:absolute!important;
@@ -488,38 +491,38 @@
 <section id="anatomy-of-a-quarto-document" class="slide level2">
 <h2>Anatomy of a Quarto document</h2>
 <div class="r-stack">
-<div class="sourceCode" id="cb3" data-code-line-numbers="|1-6|8,10|12|13-16|18-31"><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb3-1"><a href=""></a><span class="pp">---</span></span>
-<span id="cb3-2"><a href=""></a><span class="fu">title</span><span class="kw">:</span><span class="at"> </span><span class="st">"ggplot2 demo"</span></span>
-<span id="cb3-3"><a href=""></a><span class="fu">format</span><span class="kw">:</span><span class="at"> </span></span>
-<span id="cb3-4"><a href=""></a><span class="at">  </span><span class="fu">html</span><span class="kw">:</span></span>
-<span id="cb3-5"><a href=""></a><span class="at">    </span><span class="fu">code-fold</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span></span>
-<span id="cb3-6"><a href=""></a><span class="pp">---</span></span>
+<div class="sourceCode" id="cb3" data-code-line-numbers="|1-6|8,10|12|13-16|18-31"><pre class="sourceCode numberSource markdown qmd number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb3-1"><a href=""></a><span class="co">---</span></span>
+<span id="cb3-2"><a href=""></a><span class="an">title:</span><span class="co"> "ggplot2 demo"</span></span>
+<span id="cb3-3"><a href=""></a><span class="an">format:</span><span class="co"> </span></span>
+<span id="cb3-4"><a href=""></a><span class="co">  html:</span></span>
+<span id="cb3-5"><a href=""></a><span class="co">    code-fold: true</span></span>
+<span id="cb3-6"><a href=""></a><span class="co">---</span></span>
 <span id="cb3-7"><a href=""></a></span>
-<span id="cb3-8"><a href=""></a><span class="co">## Meet Quarto</span></span>
+<span id="cb3-8"><a href=""></a><span class="fu">## Meet Quarto</span></span>
 <span id="cb3-9"><a href=""></a></span>
-<span id="cb3-10"><a href=""></a><span class="at">Quarto enables you to weave together content and executable code into a finished document. To learn more about Quarto see &lt;https://quarto.org&gt;.</span></span>
+<span id="cb3-10"><a href=""></a>Quarto enables you to weave together content and executable code into a finished document. To learn more about Quarto see <span class="ot">&lt;https://quarto.org&gt;</span>.</span>
 <span id="cb3-11"><a href=""></a></span>
-<span id="cb3-12"><a href=""></a><span class="at">```{r}</span></span>
-<span id="cb3-13"><a href=""></a><span class="co">#| label: plot-penguins</span></span>
-<span id="cb3-14"><a href=""></a><span class="co">#| echo: false</span></span>
-<span id="cb3-15"><a href=""></a><span class="co">#| message: false</span></span>
-<span id="cb3-16"><a href=""></a><span class="co">#| warning: false</span></span>
+<span id="cb3-12"><a href=""></a><span class="in">```{r}</span></span>
+<span id="cb3-13"><a href=""></a><span class="in">#| label: plot-penguins</span></span>
+<span id="cb3-14"><a href=""></a><span class="in">#| echo: false</span></span>
+<span id="cb3-15"><a href=""></a><span class="in">#| message: false</span></span>
+<span id="cb3-16"><a href=""></a><span class="in">#| warning: false</span></span>
 <span id="cb3-17"><a href=""></a></span>
-<span id="cb3-18"><a href=""></a><span class="at">library(tidyverse)</span></span>
-<span id="cb3-19"><a href=""></a><span class="at">library(palmerpenguins)</span></span>
+<span id="cb3-18"><a href=""></a><span class="in">library(tidyverse)</span></span>
+<span id="cb3-19"><a href=""></a><span class="in">library(palmerpenguins)</span></span>
 <span id="cb3-20"><a href=""></a></span>
-<span id="cb3-21"><a href=""></a><span class="at">ggplot(penguins, </span></span>
-<span id="cb3-22"><a href=""></a><span class="at">       aes(x = flipper_length_mm, y = bill_length_mm)) +</span></span>
-<span id="cb3-23"><a href=""></a><span class="at">  geom_point(aes(color = species, shape = species)) +</span></span>
-<span id="cb3-24"><a href=""></a><span class="at">  scale_color_manual(values = c("darkorange","purple","cyan4")) +</span></span>
-<span id="cb3-25"><a href=""></a><span class="at">  labs(</span></span>
-<span id="cb3-26"><a href=""></a><span class="at">    title = "Flipper and bill length",</span></span>
-<span id="cb3-27"><a href=""></a><span class="at">    subtitle = "Dimensions for penguins at Palmer Station LTER",</span></span>
-<span id="cb3-28"><a href=""></a><span class="at">    x = "Flipper length (mm)", y = "Bill length (mm)",</span></span>
-<span id="cb3-29"><a href=""></a><span class="at">    color = "Penguin species", shape = "Penguin species"</span></span>
-<span id="cb3-30"><a href=""></a><span class="at">  ) +</span></span>
-<span id="cb3-31"><a href=""></a><span class="at">  theme_minimal()</span></span>
-<span id="cb3-32"><a href=""></a><span class="at">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb3-21"><a href=""></a><span class="in">ggplot(penguins, </span></span>
+<span id="cb3-22"><a href=""></a><span class="in">       aes(x = flipper_length_mm, y = bill_length_mm)) +</span></span>
+<span id="cb3-23"><a href=""></a><span class="in">  geom_point(aes(color = species, shape = species)) +</span></span>
+<span id="cb3-24"><a href=""></a><span class="in">  scale_color_manual(values = c("darkorange","purple","cyan4")) +</span></span>
+<span id="cb3-25"><a href=""></a><span class="in">  labs(</span></span>
+<span id="cb3-26"><a href=""></a><span class="in">    title = "Flipper and bill length",</span></span>
+<span id="cb3-27"><a href=""></a><span class="in">    subtitle = "Dimensions for penguins at Palmer Station LTER",</span></span>
+<span id="cb3-28"><a href=""></a><span class="in">    x = "Flipper length (mm)", y = "Bill length (mm)",</span></span>
+<span id="cb3-29"><a href=""></a><span class="in">    color = "Penguin species", shape = "Penguin species"</span></span>
+<span id="cb3-30"><a href=""></a><span class="in">  ) +</span></span>
+<span id="cb3-31"><a href=""></a><span class="in">  theme_minimal()</span></span>
+<span id="cb3-32"><a href=""></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="quarto-figure quarto-figure-center">
 <figure>
 <p><img data-src="images/knitr-plot.png" class="fragment quarto-figure quarto-figure-center" style="width:50.0%"></p>
@@ -529,7 +532,48 @@
 </section>
 <section id="quarto-extensions" class="slide level2">
 <h2>Quarto extensions</h2>
-<p>Extensions are a powerful way to modify and extend the behavior of Quarto.</p>
+<div class="panel-tabset">
+<ul id="tabset-1" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-1-1">Formats</a></li><li><a href="#tabset-1-2">Journal articles</a></li><li><a href="#tabset-1-3">RevealJS themes</a></li></ul>
+<div class="tab-content">
+<div id="tabset-1-1">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="images/extension1.gif" class="quarto-figure quarto-figure-center" style="width:40.0%"></p>
+</figure>
+</div>
+<p>Scrollytelling extension</p>
+</div>
+<div id="tabset-1-2">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="images/extension2.png" class="quarto-figure quarto-figure-center" style="width:40.0%"></p>
+</figure>
+</div>
+<p>Journal of Statistical Software (JSS)</p>
+</div>
+<div id="tabset-1-3">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="images/extension3.gif" class="quarto-figure quarto-figure-center" style="width:40.0%"></p>
+</figure>
+</div>
+<p>nes-revealjs format by EmilHvitfeldt</p>
+</div>
+</div>
+</div>
+<aside class="notes">
+<p>Quarto extensions let you customize and extend Quarto’s functionality beyond its built-in features. They enable: New Output Formats – Create custom templates for reports, presentations, or interactive documents, Custom Layouts &amp; Themes – Design unique styling and layouts for HTML, PDF, or Word outputs. Custom Shortcodes &amp; Filters – Modify how Quarto processes content, such as adding new syntax or automating formatting, which I will show in next page. Quarto has a Lua-based extension system, and you can make your own, too.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
 </section>
 <section id="quarto-extensions-1" class="slide level2">
 <h2>Quarto extensions</h2>
@@ -562,19 +606,6 @@
 <div class="sourceCode" id="cb6"><pre class="sourceCode numberSource md number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb6-1"><a href=""></a>{{&lt; fa brands github &gt;}}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Results in:</p>
 <p><i class="fa-brands fa-github" aria-label="github"></i></p>
-<aside class="notes">
-<p>Quarto has a Lua-based extension system.</p>
-<style type="text/css">
-        span.MJX_Assistive_MathML {
-          position:absolute!important;
-          clip: rect(1px, 1px, 1px, 1px);
-          padding: 1px 0 0 0!important;
-          border: 0!important;
-          height: 1px!important;
-          width: 1px!important;
-          overflow: hidden!important;
-          display:block!important;
-      }</style></aside>
 </section>
 <section id="quarto-extensions-3" class="slide level2">
 <h2>Quarto extensions</h2>
@@ -588,7 +619,7 @@
 <aside><div>
 <p><a href="https://m.canouil.dev/quarto-extensions/">Link</a></p>
 </div></aside></section>
-<section id="section-4" class="slide level2" data-background-image="images/quartolive-intro.png">
+<section id="section-5" class="slide level2" data-background-image="images/quartolive-intro.png">
 <h2></h2>
 <aside class="notes">
 <p>Quarto Live allows you to embed WebAssembly-powered code blocks and exercises in Quarto documents through the quarto-live extension. There’s support for both R via webR and Python via Pyodide. Featuers include interactive code blocks, exercises with hints and solutions, and rich output like plots. And most importantly, web development skills are not needed to use webR in your content. I wanted to mention that originally, there was Jame Balamuta’s quarto-webr extension, but quarto-live is the version supported by Posit.</p>
@@ -776,16 +807,21 @@ eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoibW9kIDwtIGxtKHdhaXRpbmcg
 </section>
 <section id="creating-exercises" class="slide level2">
 <h2>Creating exercises</h2>
-<p>Designating a <code>webr</code> chunk as an exercise (with optional setup code, hints, solutions, and grading):</p>
+<p>Designating a <code>webr</code> chunk as an exercise (with optional setup code, hints, solutions, and grading).</p>
 <div class="cell" data-layout-align="center" data-exercise="ex_1">
 <div>
 <div id="webr-3" class="exercise-cell">
 
 </div>
 <script type="webr-3-contents">
-eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWUsImV4ZXJjaXNlIjoiZXhfMSJ9LCJjb2RlIjoiMSArIDIgKyAzICsgX19fX19fIn0=
+eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWUsImV4ZXJjaXNlIjoiZXhfMSJ9LCJjb2RlIjoiIyBGaWxsIGluIHRoZSBibGFuayBzbyB0aGF0IHRoZSByZXN1bHQgb2YgdGhlIHN1bSBpcyAxMC5cblxuMSArIDIgKyAzICsgX19fX19fIn0=
 </script>
 </div>
+</div>
+<div class="cell" data-layout-align="center" data-exercise="ex_1" data-check="true">
+<script type="exercise-check-ex_1-contents">
+eyJhdHRyIjp7ImNoZWNrIjp0cnVlLCJlZGl0Ijp0cnVlLCJldmFsIjp0cnVlLCJleGVyY2lzZSI6ImV4XzEifSwiY29kZSI6ImlmIChpZGVudGljYWwoLnJlc3VsdCwgMTApKSB7XG4gIGxpc3QoY29ycmVjdCA9IFRSVUUsIG1lc3NhZ2UgPSBcIk5pY2Ugd29yayFcIilcbn0gZWxzZSB7XG4gIGxpc3QoY29ycmVjdCA9IEZBTFNFLCBtZXNzYWdlID0gXCJUaGF0J3MgaW5jb3JyZWN0LCBzb3JyeS5cIilcbn0ifQ==
+</script>
 </div>
 <div class="hint webr-ojs-exercise exercise-hint d-none" data-exercise="ex_1">
 <div class="callout callout-note callout-titled callout-style-default">
@@ -822,7 +858,7 @@ eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWUsImV4ZXJjaXNlIjoiZXhfMSJ9LCJjb2RlIjoi
 <h2>Example: Claus Wilke Introduction to R</h2>
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><a href="https://wilkelab.org/SDS366/worksheets/intro-to-R.html"><img data-src="images/exercises.png" class="quarto-figure quarto-figure-center" style="width:80.0%"></a></p>
+<p><a href="https://wilkelab.org/SDS366/worksheets/intro-to-R.html" target="_blank"><img data-src="images/exercises.png" class="quarto-figure quarto-figure-center" style="width:80.0%"></a></p>
 </figure>
 </div>
 
@@ -833,14 +869,18 @@ eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWUsImV4ZXJjaXNlIjoiZXhfMSJ9LCJjb2RlIjoi
 <h2>Example: Six not-so-basic base R functions</h2>
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><a href="https://ivelasq.rbind.io/blog/not-so-basic-base-r-functions/"><img data-src="images/blog.png" class="quarto-figure quarto-figure-center" style="width:70.0%"></a></p>
+<p><a href="https://ivelasq.rbind.io/blog/not-so-basic-base-r-functions/" target="_blank"><img data-src="images/blog.png" class="quarto-figure quarto-figure-center" style="width:70.0%"></a></p>
 </figure>
 </div>
 
 <aside><div>
 <p>https://ivelasq.rbind.io/blog/not-so-basic-base-r-functions/</p>
 </div></aside></section>
-<section id="section-5" class="slide level2" data-background-image="images/shiny.png">
+<section id="webr-love" class="slide level2">
+<h2>webR love 💜</h2>
+
+<img data-src="images/webr-love.png" class="quarto-figure quarto-figure-center r-stretch"></section>
+<section id="section-6" class="slide level2" data-background-image="images/shiny.png">
 <h2></h2>
 </section>
 <section id="introduction-to-shiny" class="slide level2">
@@ -937,7 +977,7 @@ eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWUsImV4ZXJjaXNlIjoiZXhfMSJ9LCJjb2RlIjoi
       }</style></aside>
 </div>
 </section>
-<section id="section-6" class="slide level2" data-background-image="images/shinylive.png">
+<section id="section-7" class="slide level2" data-background-image="images/shinylive.png">
 <h2></h2>
 <aside class="notes">
 <p>With Shinylive, anybody can create their own serverless Shiny apps to run in the browser.</p>
@@ -959,7 +999,7 @@ eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWUsImV4ZXJjaXNlIjoiZXhfMSJ9LCJjb2RlIjoi
 <span id="cb15-2"><a href=""></a>#|   shinylive does not work in self-contained HTML documents.</span>
 <span id="cb15-3"><a href=""></a>#|   Please set `embed-resources: false` in your metadata.</span>
 <span id="cb15-4"><a href=""></a>#| standalone: true</span>
-<span id="cb15-5"><a href=""></a>#| viewerHeight: 420</span>
+<span id="cb15-5"><a href=""></a>#| viewerHeight: 500</span>
 <span id="cb15-6"><a href=""></a></span>
 <span id="cb15-7"><a href=""></a>library(shiny)</span>
 <span id="cb15-8"><a href=""></a>library(bslib)</span>
@@ -1009,10 +1049,15 @@ eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWUsImV4ZXJjaXNlIjoiZXhfMSJ9LCJjb2RlIjoi
           display:block!important;
       }</style></aside>
 </section>
-<section id="hosting-shinylive-apps" class="slide level2">
-<h2>Hosting Shinylive apps</h2>
+<section id="shinylive-architecture" class="slide level2">
+<h2>Shinylive architecture</h2>
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="images/shinylive-arch.png" class="quarto-figure quarto-figure-center" style="width:60.0%"></p>
+</figure>
+</div>
 
-<img data-src="images/shinylive-arch.png" class="quarto-figure quarto-figure-center r-stretch"><aside class="notes">
+<aside class="notes">
 <p>All you need to run Shinylive is one of these static web servers. When an application is deployed with Shinylive, Python and Shiny run in the web browser: the browser is effectively both the client and server for the application. There is a web server that serves files, but it does not run Python or Shiny—it can be a “dumb” static web server.</p>
 <style type="text/css">
         span.MJX_Assistive_MathML {
@@ -1025,7 +1070,9 @@ eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWUsImV4ZXJjaXNlIjoiZXhfMSJ9LCJjb2RlIjoi
           overflow: hidden!important;
           display:block!important;
       }</style></aside>
-</section>
+<aside><div>
+<p><a href="https://georgestagg.github.io/shiny-without-a-server-2023/#/traditional-shiny-architecture">Source</a></p>
+</div></aside></section>
 <section id="how-to-use-shinylive" class="slide level2">
 <h2>How to use Shinylive</h2>
 <ol type="1">
@@ -1039,12 +1086,12 @@ eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWUsImV4ZXJjaXNlIjoiZXhfMSJ9LCJjb2RlIjoi
 <h3 id="shinylive-online-editor">Shinylive online editor</h3>
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><a href="https://shinylive.io/r/examples/"><img data-src="images/shinylive-editor.png" class="quarto-figure quarto-figure-center" style="width:70.0%"></a></p>
+<p><a href="https://shinylive.io/r/examples/" target="_blank"><img data-src="images/shinylive-editor.png" class="quarto-figure quarto-figure-center" style="width:70.0%"></a></p>
 </figure>
 </div>
 
 <aside class="notes">
-<p>There’s an online Shinylive editor for R and Python. The editor is on the left, so you can change the app in real time. Build it live! You can share apps via the share button, with a URL that you can sent to someone else.</p>
+<p>There’s an online Shinylive editor for R and Python. The editor is on the left, so you can change the app in real time. Build it live! It uses bslib which is next-generation Shiny creation and styling. It aims to look beautiful right out of the box. You can share apps via the share button, with a URL that you can sent to someone else.</p>
 <style type="text/css">
         span.MJX_Assistive_MathML {
           position:absolute!important;
@@ -1066,7 +1113,11 @@ eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWUsImV4ZXJjaXNlIjoiZXhfMSJ9LCJjb2RlIjoi
 <div class="sourceCode" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href=""></a><span class="fu">install.packages</span>(<span class="st">"shinylive"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p><br></p>
 <div class="sourceCode" id="cb17"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href=""></a>pip install shinylive</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section>
+
+<aside><div>
+<p><a href="https://posit-dev.github.io/r-shinylive/">R docs</a></p>
+<p><a href="https://shiny.posit.co/py/docs/shinylive.html">Python docs</a></p>
+</div></aside></section>
 <section id="how-to-use-shinylive-3" class="slide level2">
 <h2>How to use Shinylive</h2>
 <h3 id="convert-a-shiny-app-1">Convert a Shiny app</h3>
@@ -1089,7 +1140,8 @@ eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWUsImV4ZXJjaXNlIjoiZXhfMSJ9LCJjb2RlIjoi
           display:block!important;
       }</style></aside>
 <aside><div>
-<p>https://posit-dev.github.io/r-shinylive/ https://shiny.posit.co/py/docs/shinylive.html</p>
+<p><a href="https://posit-dev.github.io/r-shinylive/">R docs</a></p>
+<p><a href="https://shiny.posit.co/py/docs/shinylive.html">Python docs</a></p>
 </div></aside></section>
 <section id="how-to-use-shinylive-4" class="slide level2">
 <h2>How to use Shinylive</h2>
@@ -1114,7 +1166,8 @@ eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWUsImV4ZXJjaXNlIjoiZXhfMSJ9LCJjb2RlIjoi
           display:block!important;
       }</style></aside>
 <aside><div>
-<p>https://posit-dev.github.io/r-shinylive/ https://shiny.posit.co/py/docs/shinylive.html</p>
+<p><a href="https://posit-dev.github.io/r-shinylive/">R docs</a></p>
+<p><a href="https://shiny.posit.co/py/docs/shinylive.html">Python docs</a></p>
 </div></aside></section>
 <section id="how-to-use-shinylive-5" class="slide level2">
 <h2>How to use Shinylive</h2>
@@ -1159,47 +1212,47 @@ eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWUsImV4ZXJjaXNlIjoiZXhfMSJ9LCJjb2RlIjoi
 <h2>Example: Shiny for Python docs</h2>
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><a href="https://shinylive.io/py/examples/"><img data-src="images/pyshiny.png" class="quarto-figure quarto-figure-center" style="width:80.0%"></a></p>
+<p><a href="https://shiny.posit.co/py/docs/overview.html" target="_blank"><img data-src="images/pyshiny.png" class="quarto-figure quarto-figure-center" style="width:80.0%"></a></p>
 </figure>
 </div>
 
 <aside><div>
-<p><a href="https://shinylive.io/py/examples/">Link</a></p>
+<p><a href="https://shiny.posit.co/py/docs/overview.html">Link</a></p>
+</div></aside></section>
+<section id="example-claus-wilkes-color-picker-app" class="slide level2">
+<h2>Example: Claus Wilke’s Color Picker App</h2>
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><a href="https://wilkelab.org/SDS366/apps/bin/choose-color/"><img data-src="images/shinylive-example.png" class="quarto-figure quarto-figure-center" style="width:80.0%"></a></p>
+</figure>
+</div>
+
+<aside><div>
+<p><a href="https://wilkelab.org/SDS366/apps/bin/choose-color/">Link</a></p>
 </div></aside></section>
 <section id="example-shiny-assistant" class="slide level2">
 <h2>Example: Shiny Assistant</h2>
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><a href="https://gallery.shinyapps.io/assistant/#"><img data-src="images/shinyassistant.png" class="quarto-figure quarto-figure-center" style="width:80.0%"></a></p>
+<p><a href="https://gallery.shinyapps.io/assistant/#" target="_blank"><img data-src="images/shinyassistant.png" class="quarto-figure quarto-figure-center" style="width:80.0%"></a></p>
 </figure>
 </div>
 
 <aside><div>
 <p><a href="https://gallery.shinyapps.io/assistant/#">Link</a></p>
 </div></aside></section>
-<section id="example-claus-wilkes-color-picker-app" class="slide level2">
-<h2>Example: Claus Wilke’s Color Picker App</h2>
-<div class="quarto-figure quarto-figure-center">
-<figure>
-<p><a href="https://wilkelab.org/SDS366/worksheets/apps/bin/choose-color/"><img data-src="images/shinylive-example.png" class="quarto-figure quarto-figure-center" style="width:80.0%"></a></p>
-</figure>
-</div>
-
-<aside><div>
-<p><a href="https://wilkelab.org/SDS366/worksheets/apps/bin/choose-color/">Link</a></p>
-</div></aside></section>
 <section id="use-cases" class="slide level2">
 <h2>Use cases</h2>
 <div>
 <ul>
-<li class="fragment">Interactive notebooks and tutorials for teaching</li>
-<li class="fragment">Sharing results with executable code</li>
+<li class="fragment">Share interactive reports and dashboards with executable code</li>
 <li class="fragment">Create and distribute interactive, <a href="https://www.nature.com/articles/d41586-024-00725-1">reproducible documentation</a></li>
 <li class="fragment"><a href="https://pharmaverse.github.io/blog/posts/2024-02-01_containers_webassembly_submission/containers_and_webassembly_submissions.html">R-based submissions of clinical trial data to regulatory bodies for review</a></li>
+<li class="fragment">Teaching and learning</li>
 </ul>
 </div>
 <aside class="notes">
-<p>webR can provide a smooth, interactive, immediate introduction to the world of working with data in R. Users who haven’t had the chance to use R due to barriers raised by software installation or cloud-based service registration can still be introduced to R thanks to interactive examples powered by webR. The R Consortium Submissions Group champions improved practices of R in clinical trial research, and thanks to Shinylive, they have successfully submitted a pilot R Shiny app featuing Shinylive to the FDA to review.</p>
+<p>webR can provide a smooth, interactive, immediate introduction to the world of working with data in R. Users who haven’t had the chance to use R due to barriers raised by software installation or cloud-based service registration can still be introduced to R thanks to interactive examples powered by webR. And in terms of reproducibility, you can have reproducible statistics through containerization and notebook-style literate programming. The R Consortium Submissions Group champions improved practices of R in clinical trial research, and thanks to Shinylive, they have successfully submitted a pilot R Shiny app featuing Shinylive to the FDA to review. In terms of educational benefits, say you’re giving an intro to R workshop, you can dive into code without software. You can remix examples on the fly. You can have tactile educational content with interactive experimentation, reduced context switching, no more switching between console and tutorial, making the learning process more streamlined and engaging. This is also helpful for academics who want to service apps to hundreds of people but do not have the computational load available to them.</p>
 <style type="text/css">
         span.MJX_Assistive_MathML {
           position:absolute!important;
@@ -1216,16 +1269,16 @@ eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWUsImV4ZXJjaXNlIjoiZXhfMSJ9LCJjb2RlIjoi
 <h2>Benefits of web-based R and Python</h2>
 <div>
 <ul>
+<li class="fragment">Share interactive reports and dashboards easily</li>
 <li class="fragment">No installation required for the user</li>
 <li class="fragment">Works on any device (tablets, Chromebooks)
 <ul>
 <li class="fragment"><a href="https://rtask.thinkr.fr/introducing-rlinguo-a-native-mobile-app-that-runs-r/">thinkR’s Rlinguo</a></li>
 </ul></li>
-<li class="fragment">Share interactive reports and dashboards easily</li>
 </ul>
 </div>
 <aside class="notes">
-<p>webR shines in accessibility. Your content can be hosted on any static web hosting service and you can share with just a URL. Users can run code without installing software. It can be run on tablets or mobile. In terms of ease of deployment, you don’t need a supporting computational R server. You can host your code or app on static web hosting services like GitHub Pages. In terms of educational benefits, say you’re giving an intro to R workshop, you can dive into code without software. You can remix examples on the fly. You can have tactile educational content with interactive experimentation, reduced context switching, no more switching between console and tutorial, making the learning process more streamlined and engaging. This is also helpful for academics who want to service apps to hundreds of people but do not have the computational load available to them. And in terms of reproducibility, you can have reproducible statistics through containerization and notebook-style literate programming.</p>
+<p>webR shines in accessibility. Your content can be hosted on any static web hosting service and you can share with just a URL. Users can run code without installing software. It can be run on tablets or mobile. In terms of ease of deployment, you don’t need a supporting computational R server. You can host your code or app on static web hosting services like GitHub Pages.</p>
 <style type="text/css">
         span.MJX_Assistive_MathML {
           position:absolute!important;
@@ -1276,20 +1329,13 @@ eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWUsImV4ZXJjaXNlIjoiZXhfMSJ9LCJjb2RlIjoi
 </ul>
 </div>
 </section>
-<section id="section-7" class="slide level2" data-background-image="images/future.png">
+<section id="section-8" class="slide level2" data-background-image="images/future.png">
 <h2></h2>
 </section>
-<section id="exploring-a-new-frontier" class="slide level2">
+<section id="exploring-a-new-frontier" class="slide level2" data-background-image="images/frontier.png">
 <h2>“Exploring a new frontier”</h2>
-<ul>
-<li>Insert interactive examples in your package documentation</li>
-<li>Add coding exercises in course materials</li>
-<li>Present interactive walksthroughs in lectures</li>
-<li>Create materials that work on tablets and mobile devices</li>
-<li>Write interactive blog posts</li>
-</ul>
 </section>
-<section id="section-8" class="slide level2" data-background-image="images/qa.png">
+<section id="section-9" class="slide level2" data-background-image="images/qa.png">
 <h2></h2>
 
 <script type="webr-data">
