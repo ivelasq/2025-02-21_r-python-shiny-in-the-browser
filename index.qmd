@@ -136,14 +136,14 @@ Now, R has a similar solution with webR! WebR is the WebAssembly version of R th
 
 ## Example: Interactive R console
 
-[![](images/repl.png){width=80% fig-align="center"}](https://webr.r-wasm.org/latest/)
+[![](images/repl.png){width=80% fig-align="center"}](https://webr.r-wasm.org/latest/){target=_blank}
 
 ::: aside
 https://webr.r-wasm.org/latest/
 :::
 
 ::: notes
-For example, this is a web-based interactive R console that is included in the webR source repo as a demonstration of integrating webR in a wider web application. It provides a simple R environmetn in your web browser and includes console input/output, code editing, file management, and graphics device output.
+For example, this is a web-based interactive R console that is included in the webR source repo as a demonstration of integrating webR in a wider web application. It provides a simple R environment in your web browser and includes console input/output, code editing, file management, and graphics device output.
 :::
 
 ## Packages with webR
@@ -225,7 +225,7 @@ Quarto is a next-generation, open-source publishing system. It has expanded upon
 
 ::: {.r-stack}
 
-````{.yaml code-line-numbers=|1-6|8,10|12|13-16|18-31}
+````{.yaml filename="example.qmd" code-line-numbers=|1-6|8,10|12|13-16|18-31}
 ---
 title: "ggplot2 demo"
 format: 
@@ -268,6 +268,30 @@ ggplot(penguins,
 
 Extensions are a powerful way to modify and extend the behavior of Quarto.
 
+:::: {.columns}
+
+::: {.column width="28%"}
+
+:::
+
+::: {.column width="28%"}
+![](images/extension2.png)
+
+Journal of Statistical Software (JSS)
+:::
+
+::: {.column width="28%"}
+![](images/extension3.gif)
+
+nes-revealjs format by EmilHvitfeldt
+:::
+
+::::
+
+::: notes
+Quarto extensions let you customize and extend Quarto’s functionality beyond its built-in features. They enable: New Output Formats – Create custom templates for reports, presentations, or interactive documents, Custom Shortcodes & Filters – Modify how Quarto processes content, such as adding new syntax or automating formatting, and Custom Layouts & Themes – Design unique styling and layouts for HTML, PDF, or Word outputs. Quarto has a Lua-based extension system, and you can make your own, too.
+:::
+
 ## Quarto extensions
 
 For example, there's a [fontawesome](https://github.com/quarto-ext/fontawesome) extension.
@@ -302,10 +326,6 @@ Use the extension in the doc:
 Results in:
 
 {{< fa brands github >}}
-
-::: notes
-Quarto has a Lua-based extension system. 
-:::
 
 ## Quarto extensions
 
@@ -454,11 +474,24 @@ As mentioned earlier, you can also do plots with webR. Graphics work a bit diffe
 
 ## Creating exercises
 
-Designating a `webr` chunk as an exercise (with optional setup code, hints, solutions, and grading):
+Designating a `webr` chunk as an exercise (with optional setup code, hints, solutions, and grading).
+
 
 ```{webr}
 #| exercise: ex_1
+Fill in the blank so that the result of the sum is 10.
+
 1 + 2 + 3 + ______
+```
+
+```{webr}
+#| exercise: ex_1
+#| check: true
+if (identical(.result, 4 {
+  list(correct = TRUE, message = "Nice work!")
+} else {
+  list(correct = FALSE, message = "That's incorrect, sorry.")
+}
 ```
 
 ::: { .hint exercise="ex_1"}
@@ -480,7 +513,7 @@ The answer is 4 ☺️
 
 ## Example: Claus Wilke Introduction to R
 
-[![](images/exercises.png){width=80% fig-align="center"}](https://wilkelab.org/SDS366/worksheets/intro-to-R.html)
+[![](images/exercises.png){width=80% fig-align="center"}](https://wilkelab.org/SDS366/worksheets/intro-to-R.html){target=_blank}
 
 ::: aside
 https://wilkelab.org/SDS366/worksheets/intro-to-R.html
@@ -488,11 +521,15 @@ https://wilkelab.org/SDS366/worksheets/intro-to-R.html
 
 ## Example: Six not-so-basic base R functions
 
-[![](images/blog.png){width=70% fig-align="center"}](https://ivelasq.rbind.io/blog/not-so-basic-base-r-functions/)
+[![](images/blog.png){width=70% fig-align="center"}](https://ivelasq.rbind.io/blog/not-so-basic-base-r-functions/){target=_blank}
 
 ::: aside
 https://ivelasq.rbind.io/blog/not-so-basic-base-r-functions/
 :::
+
+## webR love
+
+![](images/webr-love.png){fig-align="center"}
 
 ## {background-image="images/shiny.png"}
 
@@ -631,7 +668,7 @@ All you need to run Shinylive is one of these static web servers. When an applic
 
 ### Shinylive online editor
 
-[![](images/shinylive-editor.png){width=70% fig-align="center"}](https://shinylive.io/r/examples/)
+[![](images/shinylive-editor.png){width=70% fig-align="center"}](https://shinylive.io/r/examples/){target=_blank}
 
 ::: aside
 [Link](https://shinylive.io/r/examples/)
@@ -745,7 +782,7 @@ Insert a code block with `{shinylive-python}` or `{shinylive-r}`
 
 ## Example: Shiny for Python docs
 
-[![](images/pyshiny.png){width=80% fig-align="center"}](https://shinylive.io/py/examples/)
+[![](images/pyshiny.png){width=80% fig-align="center"}](https://shinylive.io/py/examples/){target=_blank}
 
 ::: aside
 [Link](https://shinylive.io/py/examples/)
@@ -754,7 +791,7 @@ Insert a code block with `{shinylive-python}` or `{shinylive-r}`
 
 ## Example: Shiny Assistant
 
-[![](images/shinyassistant.png){width=80% fig-align="center"}](https://gallery.shinyapps.io/assistant/#)
+[![](images/shinyassistant.png){width=80% fig-align="center"}](https://gallery.shinyapps.io/assistant/#){target=_blank}
 
 ::: aside
 [Link](https://gallery.shinyapps.io/assistant/#)
@@ -763,10 +800,10 @@ Insert a code block with `{shinylive-python}` or `{shinylive-r}`
 
 ## Example: Claus Wilke's Color Picker App
 
-[![](images/shinylive-example.png){width=80% fig-align="center"}](https://wilkelab.org/SDS366/worksheets/apps/bin/choose-color/)
+[![](images/shinylive-example.png){width=80% fig-align="center"}](https://wilkelab.org/SDS366/apps/bin/choose-color/)
 
 ::: aside
-[Link](https://wilkelab.org/SDS366/worksheets/apps/bin/choose-color/)
+[Link](https://wilkelab.org/SDS366/apps/bin/choose-color/)
 :::
 
 ## Use cases
@@ -832,7 +869,7 @@ No secrets with a Shinylive app. ALl the source code goes to client, all the dat
 
 * Insert interactive examples in your package documentation
 * Add coding exercises in course materials
-* Present interactive walksthroughs in lectures
+* Present interactive walkthroughs in lectures
 * Create materials that work on tablets and mobile devices
 * Write interactive blog posts
 
