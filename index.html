@@ -746,7 +746,7 @@ eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWUsImV4ZXJjaXNlIjoiZXhfMSJ9LCJjb2RlIjoi
 </div>
 
 <aside class="notes">
-<p>A server is a machine, connected to the Internet, that runs 24/7, ready to run your Shiny app.</p>
+<p>A server is a machine, connected to the Internet, that runs 24/7, ready to run your Shiny app. The traditional way of deploying Shiny involves in a separate server and client: the server runs Python and Shiny, and clients connect via the web browser. Each client keeps an open websocket connection as long as they are using the application.</p>
 <style type="text/css">
         span.MJX_Assistive_MathML {
           position:absolute!important;
@@ -878,7 +878,20 @@ eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWUsImV4ZXJjaXNlIjoiZXhfMSJ9LCJjb2RlIjoi
 <section id="hosting-shinylive-apps" class="slide level2">
 <h2>Hosting Shinylive apps</h2>
 
-<img data-src="images/shinylive-arch.png" class="quarto-figure quarto-figure-center r-stretch"></section>
+<img data-src="images/shinylive-arch.png" class="quarto-figure quarto-figure-center r-stretch"><aside class="notes">
+<p>When an application is deployed with Shinylive, Python and Shiny run in the web browser: the browser is effectively both the client and server for the application. There is a web server that serves files, but it does not run Python or Shiny—it can be a “dumb” static web server.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
 <section id="how-to-use-shinylive" class="slide level2">
 <h2>How to use Shinylive</h2>
 <ol type="1">
@@ -1081,7 +1094,7 @@ eyJjb250ZW50cyI6W3siY2VsbE5hbWUiOiJ3ZWJyLXdpZGdldC0zIiwiaW5saW5lIjpmYWxzZSwibWV0
 </div>
 </div>
 <script type="vfs-file">
-W10=
+WyJzaGlueWxpdmUtc3cuanMiXQ==
 </script>
 </section>
     </div>
