@@ -11,9 +11,9 @@
 <link href="index_files/libs/quarto-contrib/live-runtime/live-runtime.css" rel="stylesheet">
 <link href="index_files/libs/quarto-contrib/reveal-auto-agenda-0.0.3/reveal-auto-agenda.css" rel="stylesheet">
 <meta name="shinylive:serviceworker_dir" content=".">
-<script src="index_files/libs/quarto-contrib/shinylive-0.9.3/shinylive/load-shinylive-sw.js" type="module"></script>
-<script src="index_files/libs/quarto-contrib/shinylive-0.9.3/shinylive/run-python-blocks.js" type="module"></script>
-<link href="index_files/libs/quarto-contrib/shinylive-0.9.3/shinylive/shinylive.css" rel="stylesheet">
+<script src="index_files/libs/quarto-contrib/shinylive-0.9.1/shinylive/load-shinylive-sw.js" type="module"></script>
+<script src="index_files/libs/quarto-contrib/shinylive-0.9.1/shinylive/run-python-blocks.js" type="module"></script>
+<link href="index_files/libs/quarto-contrib/shinylive-0.9.1/shinylive/shinylive.css" rel="stylesheet">
 <link href="index_files/libs/quarto-contrib/shinylive-quarto-css/shinylive-quarto.css" rel="stylesheet">
 <link href="index_files/libs/quarto-contrib/fontawesome6-1.2.0/all.min.css" rel="stylesheet">
 <link href="index_files/libs/quarto-contrib/fontawesome6-1.2.0/latex-fontsize.css" rel="stylesheet"><meta charset="utf-8">
@@ -821,25 +821,46 @@ eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWUsImV4ZXJjaXNlIjoiZXhfMSJ9LCJjb2RlIjoi
 </section>
 <section id="introduction-to-shinylive" class="slide level2">
 <h2>Introduction to Shinylive</h2>
-<div class="sourceCode" id="cb11" data-engine="python"><pre class="sourceCode numberSource shinylive-python number-lines code-with-copy"><code class="sourceCode"><span id="cb11-1"><a href=""></a>#| '!! shinylive warning !!': |</span>
+<div class="sourceCode" id="cb11" data-engine="r"><pre class="sourceCode numberSource shinylive-r number-lines code-with-copy"><code class="sourceCode"><span id="cb11-1"><a href=""></a>#| '!! shinylive warning !!': |</span>
 <span id="cb11-2"><a href=""></a>#|   shinylive does not work in self-contained HTML documents.</span>
 <span id="cb11-3"><a href=""></a>#|   Please set `embed-resources: false` in your metadata.</span>
 <span id="cb11-4"><a href=""></a>#| standalone: true</span>
-<span id="cb11-5"><a href=""></a></span>
-<span id="cb11-6"><a href=""></a>from shiny import *</span>
-<span id="cb11-7"><a href=""></a></span>
-<span id="cb11-8"><a href=""></a>app_ui = ui.page_fluid(</span>
-<span id="cb11-9"><a href=""></a>    ui.input_slider("n", "N", 0, 100, 40),</span>
-<span id="cb11-10"><a href=""></a>    ui.output_text_verbatim("txt"),</span>
-<span id="cb11-11"><a href=""></a>)</span>
-<span id="cb11-12"><a href=""></a></span>
-<span id="cb11-13"><a href=""></a>def server(input, output, session):</span>
-<span id="cb11-14"><a href=""></a>    @output</span>
-<span id="cb11-15"><a href=""></a>    @render.text</span>
-<span id="cb11-16"><a href=""></a>    def txt():</span>
-<span id="cb11-17"><a href=""></a>        return f"The value of n*2 is {input.n() * 2}"</span>
-<span id="cb11-18"><a href=""></a></span>
-<span id="cb11-19"><a href=""></a>app = App(app_ui, server)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb11-5"><a href=""></a>#| viewerHeight: 700</span>
+<span id="cb11-6"><a href=""></a></span>
+<span id="cb11-7"><a href=""></a>library(shiny)</span>
+<span id="cb11-8"><a href=""></a>library(bslib)</span>
+<span id="cb11-9"><a href=""></a></span>
+<span id="cb11-10"><a href=""></a>ui &lt;- page_sidebar(</span>
+<span id="cb11-11"><a href=""></a>  title = "Simple Shiny App",</span>
+<span id="cb11-12"><a href=""></a>  theme = bs_theme(bootswatch = "flatly"),</span>
+<span id="cb11-13"><a href=""></a>  </span>
+<span id="cb11-14"><a href=""></a>  sidebar = sidebar(</span>
+<span id="cb11-15"><a href=""></a>    numericInput("number", "Enter a number:", value = 5, min = 1, max = 100),</span>
+<span id="cb11-16"><a href=""></a>    selectInput("color", "Choose color:", </span>
+<span id="cb11-17"><a href=""></a>                choices = c("red", "blue", "green", "purple"))</span>
+<span id="cb11-18"><a href=""></a>  ),</span>
+<span id="cb11-19"><a href=""></a>  </span>
+<span id="cb11-20"><a href=""></a>  card(</span>
+<span id="cb11-21"><a href=""></a>    card_header("Result"),</span>
+<span id="cb11-22"><a href=""></a>    card_body(</span>
+<span id="cb11-23"><a href=""></a>      plotOutput("plot")</span>
+<span id="cb11-24"><a href=""></a>    )</span>
+<span id="cb11-25"><a href=""></a>  )</span>
+<span id="cb11-26"><a href=""></a>)</span>
+<span id="cb11-27"><a href=""></a></span>
+<span id="cb11-28"><a href=""></a>server &lt;- function(input, output) {</span>
+<span id="cb11-29"><a href=""></a>  output$plot &lt;- renderPlot({</span>
+<span id="cb11-30"><a href=""></a>    plot(1:input$number, </span>
+<span id="cb11-31"><a href=""></a>         col = input$color,</span>
+<span id="cb11-32"><a href=""></a>         pch = 19,</span>
+<span id="cb11-33"><a href=""></a>         cex = 2,</span>
+<span id="cb11-34"><a href=""></a>         main = "Simple Plot",</span>
+<span id="cb11-35"><a href=""></a>         xlab = "Index",</span>
+<span id="cb11-36"><a href=""></a>         ylab = "Value")</span>
+<span id="cb11-37"><a href=""></a>  })</span>
+<span id="cb11-38"><a href=""></a>}</span>
+<span id="cb11-39"><a href=""></a></span>
+<span id="cb11-40"><a href=""></a>shinyApp(ui, server)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <aside class="notes">
 <p>Shinylive uses Pyodide and webR to enable fully in-browser Shiny apps without a backend. It offers an online editor, conversion of existing Shiny apps, and embedding Shiny apps in Quarto documents.</p>
 <style type="text/css">
