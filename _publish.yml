@@ -1,0 +1,4 @@
+- source: index.qmd
+  quarto-pub:
+    - id: a4e52a8f-0fbe-4943-a5c3-cdc32ed1f20f
+      url: https://ivelasq.quarto.pub/interactive-r-python-and-shiny-in-the-browser

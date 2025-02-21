@@ -1,24 +1,29 @@
 ---
 title: "Interactive R, Python, and Shiny in the Browser"
 format:
-  revealjs: 
+  live-revealjs:
     theme: [default, custom.scss]
+    resources: 
+      - shinylive-sw.js
     filters:
       - fontawesome
       - reveal-auto-agenda
+      - shinylive
     auto-agenda:
       bullets: numbered
-    transition: fade
-    background-transition: fade
-    highlight-style: nord
+    highlight-style: atom-one
     title-slide-attributes: 
       data-background-image: images/title.png
       data-background-color: "black"
-    footer: "https://github.com/ivelasq/getting-started-with-report-writing-using-quarto"
+    footer: "bit.ly/interactive-data-science"
+    revealjs-plugins:
+      - drop
 knitr: 
   opts_chunk: 
     fig.align: center
 ---
+
+{{< include ./_extensions/r-wasm/live/_knitr.qmd >}}
 
 ## Introduction
 
@@ -36,3 +41,797 @@ knitr:
 
 </center>
 
+## Picture this: {background-image="images/talk-0.png"}
+
+First day of class...
+
+::: notes
+First day of class, your student goes, "Professor, I tried installing R but my laptop keeps running out of space."
+:::
+
+## Picture this: {background-image="images/talk-2.png"}
+
+First day of class...
+
+:::: {.columns}
+
+::: {.column width="50%"}
+"Professor, I tried installing R but my laptop keeps running out of space."
+:::
+
+::: {.column width="50%"}
+:::
+
+::::
+
+## Picture this: {background-image="images/talk-1.png"}
+
+To your boss...
+
+:::: {.columns}
+
+::: {.column width="50%"}
+:::
+
+::: {.column width="50%"}
+"I created this great dashboard, but IT is taking forever to approve the server request."
+:::
+
+::::
+
+::: notes
+At work, you tell your boss, "I created this great dashboard, but IT is taking forever to approve the server request."
+:::
+
+## Picture this: {background-image="images/talk-2.png"}
+
+With your colleague...
+
+:::: {.columns}
+
+::: {.column width="50%"}
+"Sorry, I don't have R set up on my laptop."
+:::
+
+::: {.column width="50%"}
+:::
+
+::::
+
+::: notes
+Or, since you don't have a server, you share your code with your colleague but they say, "Sorry, I don't have R set up on my laptop."
+:::
+
+## {background-image="images/interactive.png"}
+
+::: notes
+Enter the world of interactive R and Python in the browser. Running code directly in the browser opens the door for many new and exciting uses for data science on the web.
+:::
+
+## {background-image="images/webr-pyodide.png"}
+
+::: notes
+This is thanks to the amazing technology brought to you by webR and Pyodide. But first, let's talk about WebAssembly.
+:::
+
+## What is WebAssembly? {background-image="images/wasm.png"}
+
+WebAssemby is a low-level, high-performance binary instruction format that allows code to run in web browsers.
+
+::: notes
+WebAssemby, or Wasm, is a low-level, high-performance binary instruction format that allows compiled languages like C and C++ to run in web browsers at near-native speeds. C and C++ code is compiled by something called Emscripten. Emscripten takes the C/C++ code as input, produces Wasm as a result. Once it's in Wasm, you can run it in any browser that supports Wasm, which in modern browsers, is most of them.
+:::
+
+## {background-image="images/pyodide.png"}
+
+::: notes
+Python has had a browser solution for a while. Pyodide compiles the Python interpreter CPython to WebAssembly using Emscripten, making it possible to run Python in the browser.
+:::
+
+## {background-image="images/webr.png"}
+
+::: notes
+Now, R has a similar solution with webR! WebR is the WebAssembly version of R that has been compiled to run in the browser. It's an open-source project primarily driven by Posit, and thanks to the amazing work of many folks but especially George Stagg and Lionel Henry, it is possible to run R code directly in a web browser without the need for traditional servers to execute the code. A user can visit a website and run R code directly without R installed on their device. All that is required is a web server such as GitHub Pages or Netlify. 
+:::
+
+## Example: Interactive R console
+
+[![](images/repl.png){width=80% fig-align="center"}](https://webr.r-wasm.org/latest/)
+
+::: aside
+https://webr.r-wasm.org/latest/
+:::
+
+::: notes
+For example, this is a web-based interactive R console that is included in the webR source repo as a demonstration of integrating webR in a wider web application. It provides a simple R environmetn in your web browser and includes console input/output, code editing, file management, and graphics device output.
+:::
+
+## Packages with webR
+
+
+:::: {.columns}
+
+::: {.column width="50%"}
+![](images/wasm-repo.png)
+
+[repo.r-wasm.org](https://repo.r-wasm.org)
+:::
+
+::: {.column width="50%"}
+
+![](images/r-universe.png)
+
+[R Universe](https://r-universe.dev/search)
+
+:::
+::::
+
+::: notes
+Pyodide include a package manager that allows the use of over 1500 Python packages. It can also install Python wheels or load custom Python packages. There are over 14k R packages available for webR (not all have been tested). The way it works is that the R packages must be compiled for Wasm. By default, webr::install() will use the public repository hosted at https://repo.r-wasm.org/. R Universe is a project by rOpenSci that experiments with ideas for improving the publication and discover of research software in R. It builds Wasm binaries for R packages for use in webR applications. So for your custom R packages, the easiest wy to get up and running is to create a personal R-Universe repo for your packages. The system will automatically build R package binaries for different targets including WebAssembly, which can be used in webR or QuartoLive. There are other options, such as the rwasm package.
+:::
+
+## How to use webR
+
+![](images/webr-docs.png){width=80% fig-align="center"}
+
+::: aside
+https://docs.r-wasm.org/webr/latest/
+:::
+
+## How to use webR
+
+**Install the package:**
+
+```bash
+npm i webr
+```
+
+**Import the WebR class:**
+
+```bash
+import { WebR } from 'webr';
+
+const webR = new WebR();
+await webR.init();
+```
+
+. . .
+
+What if you don't know JavaScript? 😅
+
+::: notes
+WebR aims to be as quick and easy to use as possible for those familiar with JavaScript web development, which raises the question... what if you don't know Javascript?
+:::
+
+## Introduction to Quarto
+
+::: incremental
+
+* The next evolution of R Markdown
+* A publishing system for R, Python, and more
+* Creates notebooks, dashboards, books, reports, presentations
+
+:::
+
+::: aside
+quarto.org/
+:::
+
+::: notes
+Quarto is a next-generation, open-source publishing system. It has expanded upon R Markdown to add new languages and can add more in the future. R Markdown has a lot of packages doing lots of different things, but Quarto has a shared expression for core features. Create dynamic content with Python, R, Julia, and Observable. Enable “single-source publishing” — create Word, PDFs, HTML, etc. from one source, you can make books, websites, presentations. 
+:::
+
+## Anatomy of a Quarto document
+
+::: {.r-stack}
+
+````{.yaml code-line-numbers=|1-6|8,10|12|13-16|18-31}
+---
+title: "ggplot2 demo"
+format: 
+  html:
+    code-fold: true
+---
+
+## Meet Quarto
+
+Quarto enables you to weave together content and executable code into a finished document. To learn more about Quarto see <https://quarto.org>.
+
+```{{r}}
+#| label: plot-penguins
+#| echo: false
+#| message: false
+#| warning: false
+
+library(tidyverse)
+library(palmerpenguins)
+
+ggplot(penguins, 
+       aes(x = flipper_length_mm, y = bill_length_mm)) +
+  geom_point(aes(color = species, shape = species)) +
+  scale_color_manual(values = c("darkorange","purple","cyan4")) +
+  labs(
+    title = "Flipper and bill length",
+    subtitle = "Dimensions for penguins at Palmer Station LTER",
+    x = "Flipper length (mm)", y = "Bill length (mm)",
+    color = "Penguin species", shape = "Penguin species"
+  ) +
+  theme_minimal()
+```
+````
+
+![](images/knitr-plot.png){.fragment fig-align="center" width=50%}
+
+:::
+
+## Quarto extensions
+
+Extensions are a powerful way to modify and extend the behavior of Quarto.
+
+## Quarto extensions
+
+For example, there's a [fontawesome](https://github.com/quarto-ext/fontawesome) extension.
+
+Install the extension:
+
+```{.bash filename="Terminal"}
+quarto add quarto-ext/fontawesome
+```
+
+Add to your Quarto document YAML heading:
+
+````{.qmd filename="example.qmd" code-line-numbers=6,7}
+---
+title: "ggplot2 demo"
+format: 
+  html:
+    code-fold: true
+    filters:
+      - fontawesome
+---
+````
+
+## Quarto extensions
+
+Use the extension in the doc:
+
+```md
+{{{< fa brands github >}}}
+```
+
+Results in:
+
+{{< fa brands github >}}
+
+::: notes
+Quarto has a Lua-based extension system. 
+:::
+
+## Quarto extensions
+
+Quarto extension gallery by Mickaël Canouil
+
+![](images/extensions.png){width=80% fig-align="center"}
+
+::: aside
+[Link](https://m.canouil.dev/quarto-extensions/)
+:::
+
+## {background-image="images/quartolive-intro.png"}
+
+::: notes
+Quarto Live allows you to embed WebAssembly-powered code blocks and exercises in Quarto documents through the quarto-live extension. There's support for both R via webR and Python via Pyodide. Featuers include interactive code blocks, exercises with hints and solutions, and rich output like plots. And most importantly, web development skills are not needed to use webR in your content. I wanted to mention that originally, there was Jame Balamuta's quarto-webr extension, but quarto-live is the version supported by Posit.
+:::
+
+## Introduction to Quarto Live
+
+Quarto Live embeds WebAssembly powered code blocks and exercises for R and Python into Quarto documents with HTML-based output formats.
+
+```{webr}
+for (x in 1:5) {
+  print(x ** 2)
+}
+```
+
+::: notes
+After a short loading period, a Run code button will appear. R and Python code can be edited and executed in an editor like this one. Let's run and edit this code as an example.
+:::
+
+## How to install Quarto Live {auto-animate=true}
+
+Install the extension:
+
+```{.bash filename="Terminal"}
+quarto add r-wasm/quarto-live
+```
+
+Add to your Quarto document YAML header:
+
+```{.qmd filename="example.qmd"}
+---
+format: live-html
+---
+
+```
+
+## How to install Quarto Live {auto-animate=true}
+
+Install the extension:
+
+```{.bash filename="Terminal"}
+quarto add r-wasm/quarto-live
+```
+
+Add to your Quarto document YAML header:
+
+```{.qmd filename="example.qmd"}
+---
+format: live-html
+engine: knitr
+---
+
+{{{< include ./_extensions/r-wasm/live/_knitr.qmd >}}}
+```
+
+## How to use Quarto Live {.auto-animate}
+
+* Place code in a `webr` code chunk for R
+* Place code in a `pyodide` code chunk for Python
+
+````{.qmd filename="example.qmd"}
+```{{webr}}
+for (x in 1:5) {
+  print(x ** 2)
+}
+```
+````
+
+## How to use Quarto Live {.auto-animate}
+
+Can be used in presentations too:
+
+* Edit your YAML header to `live-revealjs`:
+
+```{.qmd filename="example.qmd"}
+---
+format: live-revealjs
+---
+```
+
+* Use the `quarto-drop` extension to drop an R or Python console into your slides
+
+## How to use Quarto Live
+
+Options include:
+
+::: incremental
+
+* Creating read-only cells
+* Autorun
+* Autocomplete
+* and more!
+
+:::
+
+
+## Installing packages
+
+### As the document loads
+
+```{.qmd filename="example.qmd"}
+---
+format: live-html
+webr:
+  packages:
+    - dplyr
+    - palmerpenguins
+    - ggplot2
+---
+```
+
+## Installing packages
+
+### Interactively
+
+````{.qmd filename="example.qmd"}
+```{{webr}}
+install.packages("dplyr", quiet = TRUE)
+```
+````
+
+## Displaying plots
+
+```{webr}
+mod <- lm(waiting ~ eruptions, data = faithful)
+plot(faithful, main = "Old Faihful Geyser Data")
+abline(mod, col = 'blue')
+summary(mod)
+```
+
+::: notes
+As mentioned earlier, you can also do plots with webR. Graphics work a bit different than normal. It has something called a graphics device that implements primitive drawing commands from R in the browser. It takes advantage of features in a browers when plotting R, things like fonts from other languages or emojis.
+:::
+
+## Creating exercises
+
+Designating a `webr` chunk as an exercise (with optional setup code, hints, solutions, and grading):
+
+```{webr}
+#| exercise: ex_1
+1 + 2 + 3 + ______
+```
+
+::: { .hint exercise="ex_1"}
+::: { .callout-note collapse="false"}
+## Hint 1
+
+Consider subtracting 1, 2, and 3 from 10.
+
+:::
+:::
+
+::: { .solution exercise="ex_1" }
+::: { .callout-tip collapse="false"}
+
+The answer is 4 ☺️
+
+:::
+:::
+
+## Example: Claus Wilke Introduction to R
+
+[![](images/exercises.png){width=80% fig-align="center"}](https://wilkelab.org/SDS366/worksheets/intro-to-R.html)
+
+::: aside
+https://wilkelab.org/SDS366/worksheets/intro-to-R.html
+:::
+
+## Example: Six not-so-basic base R functions
+
+[![](images/blog.png){width=70% fig-align="center"}](https://ivelasq.rbind.io/blog/not-so-basic-base-r-functions/)
+
+::: aside
+https://ivelasq.rbind.io/blog/not-so-basic-base-r-functions/
+:::
+
+## {background-image="images/shiny.png"}
+
+## Introduction to Shiny
+
+Shiny allows you to create web apps, no web development skills required.
+
+![](images/shiny-site.png){width=60% fig-align="center"}
+
+::: aside
+[shiny.posit.co](https://shiny.posit.co/)
+:::
+
+## Traditional Shiny architecture
+
+![](images/trad-shiny.png){width=60% fig-align="center"}
+
+::: aside
+[Source](https://georgestagg.github.io/shiny-without-a-server-2023/#/traditional-shiny-architecture)
+:::
+
+::: notes
+The traditional way of deploying Shiny involves in a separate server and client. A server is a machine, connected to the Internet, that runs 24/7, ready to run your Shiny app. The server runs Python and Shiny, and clients connect via the web browser. Each client keeps an open websocket connection as long as they are using the application. This is of course a simplification of the process, but fundamentally, it looks like this.
+:::
+
+## Hosting Shiny apps
+
+:::: {.columns}
+
+::: {.column width="60%"}
+#### On-Prem
+
+-   [Shiny Server](https://shiny.posit.co/py/docs/deploy.html#deploy-to-shiny-server-open-source) (open source)
+-   [Posit Connect](https://shiny.posit.co/py/docs/deploy.html#deploy-to-posit-connect-commercial) (enterprise)
+-   [Roll your own](https://shiny.posit.co/py/docs/deploy.html#other-hosting-options)
+:::
+
+    
+::: {.column width="40%"}
+#### Cloud
+
+-   [shinyapps.io](https://shiny.posit.co/py/docs/deploy.html#deploy-to-shinyapps.io-cloud-hosting)
+-   [Posit Connect Cloud](https://connect.posit.cloud/)
+-   [Hugging Face](https://huggingface.co/docs/hub/spaces-sdks-docker-shiny)
+-   [Roll your own](https://shiny.posit.co/py/docs/deploy.html#other-hosting-options)
+:::
+::::
+
+::: notes
+There are options for hosting Shiny apps, i.e., hosting their syervers, you could have RStudio Server on your laptop. But say you need scalability or additional security for your app, you could pay Posit money to have them host your servers for you with Posit Connect. There are also cloud-based solutions like shinyapps.io and Posit Connect. There's a spectrum in terms of number of users, for some, it might just be a few people and for others, we're talking thousands. There are also some in between, such as academics. Professors might have a few hundred folks looking at their apps, but they don't have infrastructure or the resources to set it up.
+:::
+
+## Hosting Shiny apps
+
+Some web services offer scalability, features, and cost:
+
+* [GitHub Pages](https://pages.github.com/)
+* [Netlify](https://www.netlify.com/)
+* [Quarto Pub](https://quartopub.com/)
+
+. . .
+
+But they can't run traditional Shiny apps!
+
+::: notes
+This is static web hosting. And it's great in terms of reach and affordabilty. You don't have to think about servers anymore, you just give them your app files. But, there's no way to run Shiny apps or dynamic R or Python code. If you've worked with Shiny in the past, you've probably embedded Shiny apps in an iFrame when you wanted to share them on a website.
+:::
+
+## {background-image="images/shinylive.png"}
+
+::: notes
+With Shinylive, anybody can create their own serverless Shiny apps to run in the browser.
+:::
+
+## Introduction to Shinylive
+
+```{shinylive-r}
+#| standalone: true
+#| viewerHeight: 420
+
+library(shiny)
+library(bslib)
+
+ui <- page_sidebar(
+  title = "Simple Shiny App",
+  theme = bs_theme(bootswatch = "flatly"),
+  
+  sidebar = sidebar(
+    numericInput("number", "Enter a number:", value = 5, min = 1, max = 100),
+    selectInput("color", "Choose color:", 
+                choices = c("red", "blue", "green", "purple"))
+  ),
+  
+  card(
+    card_header("Result"),
+    card_body(
+      plotOutput("plot")
+    )
+  )
+)
+
+server <- function(input, output) {
+  output$plot <- renderPlot({
+    plot(1:input$number, 
+         col = input$color,
+         pch = 19,
+         cex = 2,
+         main = "Simple Plot",
+         xlab = "Index",
+         ylab = "Value")
+  })
+}
+
+shinyApp(ui, server)
+```
+
+::: notes
+Announced in July 2022 for Python and September 2023 for R, Shinylive uses Pyodide and webR to enable fully in-browser Shiny apps without a backend. It offers an online editor, conversion of existing Shiny apps, and embedding Shiny apps in Quarto documents.
+:::
+
+## Hosting Shinylive apps
+
+![](images/shinylive-arch.png){fig-align="center"}
+
+::: notes
+All you need to run Shinylive is one of these static web servers. When an application is deployed with Shinylive, Python and Shiny run in the web browser: the browser is effectively both the client and server for the application. There is a web server that serves files, but it does not run Python or Shiny—it can be a “dumb” static web server.
+:::
+
+## How to use Shinylive
+
+1. Shinylive online editor
+2. Convert a Shiny app
+3. Embed a Shiny app with Quarto
+
+## How to use Shinylive
+
+### Shinylive online editor
+
+[![](images/shinylive-editor.png){width=70% fig-align="center"}](https://shinylive.io/r/examples/)
+
+::: aside
+[Link](https://shinylive.io/r/examples/)
+:::
+
+::: notes
+There's an online Shinylive editor for R and Python. The editor is on the left, so you can change the app in real time. Build it live! You can share apps via the share button, with a URL that you can sent to someone else.
+:::
+
+## How to use Shinylive
+
+### Convert a Shiny app
+
+Install the package:
+
+```r
+install.packages("shinylive")
+```
+<br>
+
+```python
+pip install shinylive
+```
+
+## How to use Shinylive
+
+### Convert a Shiny app
+
+Export the app:
+
+```r
+shinylive::export("myapp", "site")
+```
+<br>
+
+```python
+shinylive export myapp site
+```
+
+::: aside
+https://posit-dev.github.io/r-shinylive/
+https://shiny.posit.co/py/docs/shinylive.html
+:::
+
+::: notes
+Converting the app takes an app in the my app directory and produces an output directory site and then you can load the files to a static web hosting service.
+:::
+
+## How to use Shinylive
+
+### Convert a Shiny app
+
+Start a web server for the directory:
+
+```r
+httpuv::runStaticServer("site")
+```
+<br>
+
+```python
+cd site
+python -m http.server 8000
+```
+
+::: aside
+https://posit-dev.github.io/r-shinylive/
+https://shiny.posit.co/py/docs/shinylive.html
+:::
+
+::: notes
+If you want to preview the app, you can run this and it'll open it up in a web browser.
+:::
+
+## How to use Shinylive
+
+### Embed a Shiny app with Quarto
+
+Install the Quarto extension:
+
+```{.bash filename="Terminal"}
+quarto add quarto-ext/shinylive
+```
+
+Add to your Quarto document YAML heading:
+
+```{.qmd filename="example.qmd"}
+filters:
+  - shinylive
+```
+
+::: aside
+[R docs](https://posit-dev.github.io/r-shinylive/)
+
+[Python docs](https://quarto-ext.github.io/shinylive/)
+:::
+
+## How to use Shinylive
+
+### Embed a Shiny app with Quarto
+
+Insert a code block with `{shinylive-python}` or `{shinylive-r}`
+
+````{.qmd filename="example.qmd"}
+```{{shinylive-python}}
+#| standalone: true
+
+/* App code here */
+
+```
+````
+
+## Example: Shiny for Python docs
+
+[![](images/pyshiny.png){width=80% fig-align="center"}](https://shinylive.io/py/examples/)
+
+::: aside
+[Link](https://shinylive.io/py/examples/)
+:::
+
+
+## Example: Shiny Assistant
+
+[![](images/shinyassistant.png){width=80% fig-align="center"}](https://gallery.shinyapps.io/assistant/#)
+
+::: aside
+[Link](https://gallery.shinyapps.io/assistant/#)
+:::
+
+
+## Example: Claus Wilke's Color Picker App
+
+[![](images/shinylive-example.png){width=80% fig-align="center"}](https://wilkelab.org/SDS366/worksheets/apps/bin/choose-color/)
+
+::: aside
+[Link](https://wilkelab.org/SDS366/worksheets/apps/bin/choose-color/)
+:::
+
+## Use cases
+
+::: interactive
+
+* Interactive notebooks and tutorials for teaching
+* Sharing results with executable code
+* Create and distribute interactive, [reproducible documentation](https://www.nature.com/articles/d41586-024-00725-1)
+* [R-based submissions of clinical trial data to regulatory bodies for review](https://pharmaverse.github.io/blog/posts/2024-02-01_containers_webassembly_submission/containers_and_webassembly_submissions.html)
+
+:::
+
+::: notes
+webR can provide a smooth, interactive, immediate introduction to the world of working with data in R. Users who haven't had the chance to use R due to barriers raised by software installation or cloud-based service registration can still be introduced to R thanks to interactive examples powered by webR. The R Consortium Submissions Group champions improved practices of R in clinical trial research, and thanks to Shinylive, they have successfully submitted a pilot R Shiny app featuing Shinylive to the FDA to review.
+:::
+
+## Benefits of web-based R and Python
+
+::: incremental
+
+* No installation required for the user
+* Works on any device (tablets, Chromebooks)
+  * [thinkR's Rlinguo](https://rtask.thinkr.fr/introducing-rlinguo-a-native-mobile-app-that-runs-r/)
+* Share interactive reports and dashboards easily
+
+::: notes
+webR shines in accessibility. Your content can be hosted on any static web hosting service and you can share with just a URL. Users can run code without installing software. It can be run on tablets or mobile. In terms of ease of deployment, you don't need a supporting computational R server. You can host your code or app on static web hosting services like GitHub Pages. In terms of educational benefits, say you're giving an intro to R workshop, you can dive into code without software. You can remix examples on the fly. You can have tactile educational content with interactive experimentation, reduced context switching, no more switching between console and tutorial, making the learning process more streamlined and engaging. This is also helpful for academics who want to service apps to hundreds of people but do not have the computational load available to them. And in terms of reproducibility, you can have reproducible statistics through containerization and notebook-style literate programming.
+:::
+
+## Limitations and considerations
+
+::: incremental
+
+* Under active development and things might change
+* Some packages are not yet supported in WebAssembly
+    * Some packages may depend on network access and may not work
+* Security considerations (everything runs client-side)
+* Performance limitations for large datasets and packages or intensive tasks
+
+:::
+
+::: notes
+No secrets with a Shinylive app. ALl the source code goes to client, all the data goes to the client, don't include credentials, don't include sensitive data.
+:::
+
+## Best practices
+
+::: incremental
+
+* Keep computations lightweight
+* Structure code efficiently
+* Manage dependencies
+* Choose the right tool for the job
+
+:::
+
+## {background-image="images/future.png"}
+
+## "Exploring a new frontier"
+
+* Insert interactive examples in your package documentation
+* Add coding exercises in course materials
+* Present interactive walksthroughs in lectures
+* Create materials that work on tablets and mobile devices
+* Write interactive blog posts
+
+## {background-image="images/qa.png"}
