@@ -771,7 +771,7 @@ Insert a code block with `{shinylive-python}` or `{shinylive-r}`
 
 ## Use cases
 
-::: interactive
+::: incremental
 
 * Interactive notebooks and tutorials for teaching
 * Sharing results with executable code
@@ -792,6 +792,8 @@ webR can provide a smooth, interactive, immediate introduction to the world of w
 * Works on any device (tablets, Chromebooks)
   * [thinkR's Rlinguo](https://rtask.thinkr.fr/introducing-rlinguo-a-native-mobile-app-that-runs-r/)
 * Share interactive reports and dashboards easily
+
+:::
 
 ::: notes
 webR shines in accessibility. Your content can be hosted on any static web hosting service and you can share with just a URL. Users can run code without installing software. It can be run on tablets or mobile. In terms of ease of deployment, you don't need a supporting computational R server. You can host your code or app on static web hosting services like GitHub Pages. In terms of educational benefits, say you're giving an intro to R workshop, you can dive into code without software. You can remix examples on the fly. You can have tactile educational content with interactive experimentation, reduced context switching, no more switching between console and tutorial, making the learning process more streamlined and engaging. This is also helpful for academics who want to service apps to hundreds of people but do not have the computational load available to them. And in terms of reproducibility, you can have reproducible statistics through containerization and notebook-style literate programming.
